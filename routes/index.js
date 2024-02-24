@@ -9,5 +9,5 @@ router.use('/users',require('./users'))
 // for anty further routes, access from here
 // router.use('/routerName', require('./routerfile));
 
-
+console.log("new router")
 module.exports = router;
