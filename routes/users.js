@@ -6,6 +6,6 @@ const usersConrtoller = require('../controllers/users_controller');
 router.get('/profile', usersConrtoller.profile);
 router.get('/sign-in',usersConrtoller.signIn);
 router.get('/sign-up',usersConrtoller.signUp);
-
-
+router.get('/create',usersConrtoller.create);
+router.get('/create-session',usersConrtoller.create_session);
 module.exports = router;
