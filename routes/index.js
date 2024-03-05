@@ -1,4 +1,4 @@
-const express = require('express');
+express = require('express');
 
 const router = express.Router();
 const homeController = require('../controllers/home_controller');
@@ -10,4 +10,4 @@ router.use('/users',require('./users'))
 // router.use('/routerName', require('./routerfile));
 
 console.log("new router")
-module.exports = router;
+module.exports = router
