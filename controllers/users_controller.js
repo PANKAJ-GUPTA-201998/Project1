@@ -5,10 +5,25 @@ module.exports.profile = function(req, res){
     return res.render('user_profile')
 }
 module.exports.signIn=function(req,res){
+    if (req.isAuthenticated()){
+        res.redirect('/users/profile');
+    }
     return res.render('user_sign_in')
 }
 module.exports.signUp=function(req,res){
+    if (req.isAuthenticated()){
+        res.redirect('/users/profile')
+    }
     return res.render('user_sign_up')
+}
+module.exports.destroySession = function(req, res) {
+    req.logout(function(err) {
+        if (err) {
+            console.error('Error logging out:', err);
+            return res.status(500).send('Error logging out');
+        }
+        return res.redirect('/');
+    });
 }
 
 
