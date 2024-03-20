@@ -1,10 +1,9 @@
-express = require('express');
-
+const express = require('express');
+const passport =require('passport');
 const router = express.Router();
 
-const postsController = require('../controllers/posts_controller');
-
-router.get('/', postsController.getHomePage);
+const homeController = require('../controllers/home_controller')
+router.get('/', homeController.home);
 
 router.use('/posts',require('./posts'));
 router.use('/users',require('./users'));
