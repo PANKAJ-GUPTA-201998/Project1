@@ -4,10 +4,141 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=title%></title>
+    <title><%= title %></title>
+    <!-- Link to Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Main content styles */
+        main {
+            padding: 20px;
+        }
+
+        /* Post styles */
+        .post {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .post-content {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .post-meta {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .post-actions {
+            margin-top: 10px;
+        }
+
+        .post-actions button {
+            padding: 5px 10px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-actions button:hover {
+            background-color: #0056b3;
+        }
+
+        .like-button {
+            background-color: #28a745;
+        }
+
+        .comment-button {
+            background-color: #17a2b8;
+        }
+
+        /* Form styles */
+        form {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    
-    <h1>home</h1>
+    <header>
+        <h1>SocializeHub/<%= title %></h1>
+    </header>
+    <main>
+        <section id="feed-post">
+            <h2>Posts</h2>
+            <form action="/posts/create" id="new-post-form" method="post">
+                <textarea name="content" cols="30" rows="5" placeholder="Type Here..."></textarea>
+                <input type="submit" value="Post">
+            </form>
+
+            <% if (posts.length > 0) { %>
+                <% posts.forEach(post => { %>
+                    <div class="post">
+                        <p class="post-content"><%= post.content %></p>
+                        <p class="post-meta">Posted by <%= post.user.username %> on <%= new Date(post.createdAt).toLocaleDateString() %></p>
+                        <div class="post-actions">
+                            <!-- Like button with thumbs-up icon -->
+                            <button class="like-button"><i class="fas fa-thumbs-up"></i></button>
+                            <!-- Comment button with comment icon -->
+                            <button class="comment-button"><i class="fas fa-comment"></i></button>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No posts found.</p>
+            <% } %>
+        </section>
+    </main>
 </body>
 </html>
+
+
+
+
