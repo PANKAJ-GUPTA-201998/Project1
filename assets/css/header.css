@@ -1,0 +1,24 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #7b62e8;
+  color: #fff;
+  padding: 10px 20px; }
+  header h1 {
+    margin: 0; }
+  header .navigation-links {
+    list-style-type: none;
+    display: flex; }
+    header .navigation-links li {
+      margin-left: 20px; }
+      header .navigation-links li:first-child {
+        margin-left: 0; }
+      header .navigation-links li a {
+        text-decoration: none;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease; }
+        header .navigation-links li a:hover {
+          background-color: #555; }
