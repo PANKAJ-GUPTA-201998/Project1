@@ -8,12 +8,18 @@
 </head>
 <body>
     <h1>home</h1>
+    <ul>
+        <% posts.forEach(post => { %>
+            <li><%= post.content %></li>
+        <% }); %>
+    </ul>
     <form action="/posts/create" method="post">
         <textarea name="content" id="content" cols="30" rows="10" placeholder="Share your idea"></textarea>
 
     <button type="submit">Post</button>
-
+    
     </form>
+
 
 </body>
 </html>
