@@ -1,0 +1,17 @@
+<header>
+    <h1>SocializeHub</h1>
+    <nav id="main-nav">
+        <ul class="navigation-links">
+            <% if (locals.user) { %>
+                <!-- If user is logged in -->
+                <li class="nav-item"><a href="/users/profile"><%= user.name %></a></li>
+                <li class="nav-item"><a href="/users/sign-out">Sign Out</a></li>
+            <% } else { %>
+                <!-- If user is not logged in -->
+                <li class="nav-item"><a href="/users/sign-in">Sign In</a></li>
+                <li class="nav-item"><a href="/users/sign-up">Sign Up</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+

@@ -1,15 +1,15 @@
 const express = require('express');
-
+const passport =require('passport');
 const router = express.Router();
-const homeController = require('../controllers/home_controller');
-const usee=require('../controllers/users_controller')
+const post = require('../controllers/posts_controller')
+// router.get('/',passport.checkAuthentication,homeController.home);
+router.get('/',passport.checkAuthentication,post.home)
+router.use('/posts',require('./posts'));
+router.use('/users',require('./users'));
 
-console.log('router loaded');
-router.get('/', homeController.home);
-router.use('/users', usee.profile);
 
 // for anty further routes, access from here
 // router.use('/routerName', require('./routerfile));
 
-
-module.exports = router;
+console.log("new router")
+module.exports = router
