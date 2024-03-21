@@ -12,7 +12,7 @@
         <% posts.forEach(post => { %>
             <li><%= post.content %></li>
             <li>Created by <%= post.user.name%></li>
-            <p>--------------------</p>
+            
         <% }); %>
     </ul>
     <form action="/posts/create" method="post">
