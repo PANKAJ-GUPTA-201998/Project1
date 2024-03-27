@@ -7,9 +7,9 @@ router.get('/',passport.checkAuthentication,post.home)
 router.use('/posts',require('./posts'));
 router.use('/users',require('./users'));
 
+router.use('/comment',require('./comment'))
 
-// for anty further routes, access from here
-// router.use('/routerName', require('./routerfile));
+
 
 console.log("new router")
 module.exports = router
