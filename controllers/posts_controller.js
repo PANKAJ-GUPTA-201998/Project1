@@ -22,10 +22,8 @@ module.exports.home = async function(req, res) {
     try {
         // Fetch all comments and populate 'user' field for each comment
         const comments = await Comment.find({}).populate('user').exec();
-
         // Fetch posts and populate 'user' and 'comments' fields
         const posts = await Post.find({}).populate('user').populate('comments').exec();
-
         // Render the home page with the fetched posts and comments data
         res.render('home', { title: 'Home', posts: posts, comments: comments });
     } catch (err) {
