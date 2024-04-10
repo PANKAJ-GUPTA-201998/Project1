@@ -10,11 +10,19 @@
     <h1>Home</h1>
     <ul>
         <% posts.forEach(post => { %>
+            <% if (locals.user.id == post.user.id) {%> 
+                <a href="/posts/delete/<%=post.id%>">X</a>
+            <% }%>
             <li>
                 <div><strong><%= post.content %></strong></div>
                 <div>Created by <%= post.user.name %></div>
                 <!-- Display comments for each post -->
+                <h3>comments</h3>
                 <% post.comments.forEach(comment => { %>
+                    <% if ((locals.user.id == comment.user.id) || (locals.user.id == post.user.id))  {%> 
+                        <p>XX</p>
+                        <a href="/comment/delete/<%=comment.id%>">X</a>
+                    <% }%>
                     <div><%= comment.content %> - by <%= comment.user.name %></div>
                 <% }); %>
                 

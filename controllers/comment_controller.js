@@ -26,3 +26,20 @@ module.exports.Create = async function(req, res) {
         return res.status(500).send('Error in creating post');
     }
 };
+
+module.exports.delete = async function(req, res) {
+    try {
+        const comment = await Comment.findById(req.params.id);
+        
+        if (!comment) {
+            return res.redirect('back');
+        } else {
+            await Comment.deleteOne({ _id: comment._id });
+        }
+        
+        return res.redirect('back');
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send("Internal Server Error");
+    }
+};
