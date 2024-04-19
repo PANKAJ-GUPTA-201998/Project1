@@ -6,10 +6,10 @@ const post = require('../controllers/posts_controller')
 router.get('/',passport.checkAuthentication,post.home)
 router.use('/posts',require('./posts'));
 router.use('/users',require('./users'));
-
-router.use('/comment',require('./comment'))
-
+router.use('/comment',require('./comment'));
 
 
-console.log("new router")
+
+
+console.log("new router");
 module.exports = router

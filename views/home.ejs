@@ -13,26 +13,7 @@
             <% if (locals.user.id == post.user.id) {%> 
                 <a href="/posts/delete/<%=post.id%>">X</a>
             <% }%>
-            <li>
-                <div><strong><%= post.content %></strong></div>
-                <div>Created by <%= post.user.name %></div>
-                <!-- Display comments for each post -->
-                <h3>comments</h3>
-                <% post.comments.forEach(comment => { %>
-                    <% if ((locals.user.id == comment.user.id) || (locals.user.id == post.user.id))  {%> 
-                        <p>XX</p>
-                        <a href="/comment/delete/<%=comment.id%>">X</a>
-                    <% }%>
-                    <div><%= comment.content %> - by <%= comment.user.name %></div>
-                <% }); %>
-                
-                <!-- Comment form -->
-                <form action="/comment/create" method="post">
-                    <textarea name="comment" id="comment" cols="30" rows="3" placeholder="Comment here..."></textarea>
-                    <input type="hidden" name="post_id" value="<%= post._id %>">
-                    <button type="submit">Add Comment</button>    
-                </form>
-            </li>
+            <%- include('post',{ post: post, comments: comments }) -%> 
         <% }); %>
     </ul>
     

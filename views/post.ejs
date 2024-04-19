@@ -1,0 +1,11 @@
+<li>
+    <div><strong><%= post.content %></strong></div>
+    <div>Created by <%= post.user.name %></div>
+    <!-- Display comments for each post -->
+    <h3>comments</h3>
+    <%- include('comment',{comments: comments }) -%> 
+</li>
+<form action="/posts/create" method="post">
+    <textarea name="content" id="content" cols="30" rows="10" placeholder="Share your idea"></textarea>
+    <button type="submit">Post</button>
+</form>

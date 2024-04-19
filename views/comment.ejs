@@ -1,0 +1,13 @@
+<% post.comments.forEach(comment => { %>
+    <% if ((locals.user.id == comment.user.id) || (locals.user.id == post.user.id))  {%> 
+        <a href="/comment/delete/<%=comment.id%>">X</a>
+    <% }%>
+    <div><%= comment.content %> - by <%= comment.user.name %></div>
+<% }); %>
+
+<!-- Comment form -->
+<form action="/comment/create" method="post">
+    <textarea name="comment" id="comment" cols="30" rows="3" placeholder="Comment here..."></textarea>
+    <input type="hidden" name="post_id" value="<%= post._id %>">
+    <button type="submit">Add Comment</button>    
+</form>
