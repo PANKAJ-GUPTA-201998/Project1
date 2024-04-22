@@ -1,0 +1,19 @@
+.container {
+  display: flex; }
+
+.left-panel {
+  margin: 10px;
+  border: 1px solid #ccc;
+  flex: 2;
+  padding: 20px;
+  /* Add some spacing between panels */ }
+
+.right-panel {
+  margin: 10px;
+  border: 1px solid #ccc;
+  height: fit-content;
+  flex: 2;
+  padding: 20px;
+  /* Add some spacing between panels */ }
+
+/* Additional styling as needed */

@@ -18,9 +18,9 @@ const sassMiddleware=require('node-sass-middleware');
 app.use(sassMiddleware({
     src: './assets/scss',
     dest: './assets/css',
-    // debug: true,
     outputStyle:'extended',
-    prefix:'/css'
+    prefix:'/css',
+    debug:'true'
 }));
 
 app.use(express.urlencoded({ extended: true }));
@@ -38,9 +38,9 @@ app.set('views', './views');
 
 // Setup session middleware
 const store = MongoStore.create({
-    mongoUrl: 'mongodb://localhost:27017/codeial_development', // replace with your MongoDB connection URL
-    collectionName: 'sessions', // Specify the collection name for storing sessions
-    autoRemove: 'disabled' // Disable automatic session expiration
+    mongoUrl: 'mongodb://localhost:27017/codeial_development', 
+    collectionName: 'sessions', 
+    autoRemove: 'disabled' 
 });
 
 store.on('error', function(error) {

@@ -4,22 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add your CSS link here if needed -->
+    <link rel="stylesheet" href="/css/home.css">
+
     <title><%= title %></title>
 </head>
 <body>
     <h1>Home</h1>
-    <ul>
-        <% posts.forEach(post => { %>
-            <% if (locals.user.id == post.user.id) {%> 
-                <a href="/posts/delete/<%=post.id%>">X</a>
-            <% }%>
-            <%- include('post',{ post: post, comments: comments }) -%> 
-        <% }); %>
-    </ul>
-    
-    <form action="/posts/create" method="post">
-        <textarea name="content" id="content" cols="30" rows="10" placeholder="Share your idea"></textarea>
-        <button type="submit">Post</button>
-    </form>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Posts</h2>
+            <ul>
+                <% posts.forEach(post => { %>
+                    <li>
+                        <% if (locals.user.id == post.user.id) {%>
+                            <a href="/posts/delete/<%= post.id %>">X</a>
+                        <% } %>
+                        <%- include('post', { post: post, comments: comments }) -%> 
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="right-panel">
+            <h2>Users</h2>
+            <ul>
+                <% User.forEach(user => { %>
+                    <li><a href="/users/profile/<%= user.id %>"><%= user.name %></a></li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
+

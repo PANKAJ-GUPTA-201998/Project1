@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/user_profile.css">
 </head>
 <body>
-    <link rel="stylesheet" href="/css/user_profile.css">
-    <h1>Welcome, <%= user.name %></h1>
-    <p>Your email: <%= user.email %></p>
+    <% if (locals.user.id == profile.id) { %>
+        <form action="/users/update/<%=profile.id%>" method="post">
+
+            Name<input type="text" name="name" id="email" value="<%=user.name%>" required>
+            <br>
+            Email<input type="text" name="email" id="email" value="<%=user.email%>" required>
+            <button type="submit">Update</button>
+        </form>
+    <% } else { %>
+        <h1>Name: <%= profile.name %></h1>
+        <p>Email: <%= profile.email %></p>
+    <% } %>
+    
 </body>
 </html>

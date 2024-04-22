@@ -4,7 +4,7 @@
         <ul class="navigation-links">
             <% if (locals.user) { %>
                 <!-- If user is logged in -->
-                <li class="nav-item"><a href="/users/profile"><%= user.name %></a></li>
+                <li class="nav-item"><a href="/users/profile/<%=locals.user.id%>"><%= user.name %></a></li>
                 <li class="nav-item"><a href="/users/sign-out">Sign Out</a></li>
             <% } else { %>
                 <!-- If user is not logged in -->
