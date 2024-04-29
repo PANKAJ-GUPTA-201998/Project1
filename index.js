@@ -20,7 +20,7 @@ app.use(sassMiddleware({
     dest: './assets/css',
     outputStyle:'extended',
     prefix:'/css',
-    debug:'true'
+    // debug:'true'
 }));
 
 app.use(express.urlencoded({ extended: true }));
