@@ -14,6 +14,10 @@ const MongoStore = require('connect-mongo');
 
 const sassMiddleware=require('node-sass-middleware');
 
+const flash=require('connect-flash');
+
+const customMware = require('./config/middleware')
+
 
 app.use(sassMiddleware({
     src: './assets/scss',
@@ -47,21 +51,34 @@ store.on('error', function(error) {
     console.error('Session store error:', error);
 });
 
-app.use(session({
-    name: 'codeial',
-    secret: 'blahsomething',
-    saveUninitialized: false,
-    resave: false,
-    cookie: {
-        maxAge: 100 * 60 * 100
-    },
-    store: store // Use MongoDBStore for session storage
-}));
+app.use(
+      session({
+        name: "codeial",
+        secret: "blahsomething",
+        saveUninitialized: false,
+        resave: false,
+        cookie: {
+          maxAge: 1000 * 60 * 100,
+        },
+        // mongo store is used to store the session cookie in the db
+        store: MongoStore.create(
+          {
+            mongoUrl: "mongodb://localhost/codeial_development",
+            autoRemove: "disabled",
+          },
+          function (err) {
+            console.log(err || "connect-mongodb setup ok");
+          }
+        ),
+      })
+    );
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
+app.use(flash());
+app.use(customMware.setFlash);
 // Use express routes
 app.use('/', require('./routes'));
 

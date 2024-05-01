@@ -5,9 +5,10 @@ const User = require('../models/user');
 
 
 passport.use(new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback: true, // Pass the req object to the callback function
 },
-    async function(email, password, done) {
+    async function(req,email, password, done) {
       try {
         const user = await User.findOne({ email: email });
         if (!user) { 
@@ -26,6 +27,35 @@ passport.use(new LocalStrategy({
       }
     }
 ));
+
+// passport.use(
+//     new LocalStrategy(
+//       {
+//         usernameField: 'email',
+//         passReqToCallback: true // Pass the req object to the callback function
+//       },
+//       async function(req,email, password, done) {
+//         try {
+//           const user = await User.findOne({ email: email });
+  
+//           if (!user) { 
+//               req.flash('error', 'Invalid username');
+//               return done(null, false);
+//           }
+  
+//           if (user.password != password) { 
+//               req.flash('error', 'Invalid password');
+//               return done(null, false);
+//           }
+  
+//           return done(null, user);
+//         } catch (err) {
+//           console.log('Error in finding user --> Passport');
+//           return done(err);
+//         }
+//       }
+//     )
+//   );
 
 
 //serealizing user to which key in the cookie
